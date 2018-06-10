@@ -1,6 +1,7 @@
 import React from 'react'
 import injectSheet from 'react-jss'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 
 const styles = {
   container: {
@@ -23,6 +24,20 @@ const styles = {
     position: 'absolute',
     right: 5,
     bottom: 5
+  },
+  black: {
+    color: 'black'
+  },
+  bigImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 40
   }
 }
 
@@ -42,12 +57,33 @@ const symbol = letter => {
 }
 
 const Card = props => {
-  const card = props.card.split('-')
-  const char = `${symbol(card[0])}${card[1]}`
+  const { classes, card } = props
+  const splitCard = card.split('-')
+  const char = symbol(splitCard[0])
+  const colorLogic = splitCard[0] === 's' || splitCard[0] === 'c'
   return (
-    <div className={props.classes.container}>
-      <div className={props.classes.topLeft}>{char}</div>
-      <div className={props.classes.bottomRight}>{char}</div>
+    <div
+      className={cx(classes.container, {
+        [classes.black]: colorLogic
+      })}
+    >
+      <div
+        className={cx(classes.bigImage, {
+          [classes.black]: colorLogic
+        })}
+      >
+        {char}
+      </div>
+
+      <div className={classes.topLeft}>
+        <div>{splitCard[1]}</div>
+        <div>&nbsp;{char}</div>
+      </div>
+
+      <div className={classes.bottomRight}>
+        <div>{splitCard[1]}</div>
+        <div>&nbsp;{char}</div>
+      </div>
     </div>
   )
 }

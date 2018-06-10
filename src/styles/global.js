@@ -1,4 +1,5 @@
 import reset from './reset'
+import felt from 'assets/felt.jpg'
 
 const styles = {
   container: {
@@ -8,8 +9,8 @@ const styles = {
     ...reset,
     body: {
       fontFamily: '"Lato", sans-serif',
-      background: '#eaeaea',
-      background: 'green'
+      background: `green url(${felt})`,
+      backgroundSize: 'cover'
     },
     '*': {
       '-webkit-font-smoothing': 'antialiased',

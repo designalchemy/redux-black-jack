@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "autoprefixer": "^8.2.0",
+    "classnames": "^2.2.6",
     "cross-env": "^5.1.5",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",

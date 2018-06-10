@@ -18,15 +18,18 @@ const styles = {
     },
     '& h1': {
       marginBottom: 20,
-      fontSize: 20,
-      textAlign: 'center'
+      fontSize: 25,
+      textAlign: 'center',
+      color: 'white',
+      fontWeight: 'bold'
     },
     '& span': {
-      border: '1px solid black',
-      padding: 5,
+      border: '1px solid white',
+      padding: 10,
       margin: 5,
       cursor: 'pointer',
-      fontSize: 20
+      fontSize: 25,
+      color: 'white'
     }
   },
   cardContainer: {
@@ -50,7 +53,9 @@ const Background = props => {
         <div>
           <h1>Dealer</h1>
           <div className={classes.cardContainer}>
-            {dealer.map(item => <Card key={item} card={item} />)}
+            {dealer.map((item, index) => (
+              <Card key={item} card={item} dealer index={index} />
+            ))}
           </div>
         </div>
       </div>
