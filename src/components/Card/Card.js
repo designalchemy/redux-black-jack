@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 
 const styles = {
   container: {
-    width: '100px',
-    height: '160px',
+    width: 100,
+    height: 160,
     border: '1px solid black',
-    borderRadius: '6px',
-    marginRight: '20px',
+    borderRadius: 6,
+    marginRight: 20,
     backgroundColor: 'white',
     color: 'red'
   }

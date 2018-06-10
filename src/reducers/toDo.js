@@ -1,3 +1,10 @@
+const countTotals = arr =>
+  arr.reduce((acc, str) => acc + Number(str.split('-')[1]), 0)
+
+const getRandom = deck => Math.floor(Math.random() * deck.length)
+
+const getCard = deck => deck.splice(getRandom(deck), 1)
+
 const intialState = () => {
   const allCards = [
     'c-1',
@@ -53,6 +60,7 @@ const intialState = () => {
   const user = [...getCard(allCards), ...getCard(allCards)]
   const dealer = [...getCard(allCards), ...getCard(allCards)]
   const userTotal = countTotals(user)
+
   return {
     cards: allCards,
     user,
@@ -62,13 +70,6 @@ const intialState = () => {
     done: userTotal === 21 ? 'BLACK JACK - User Wins' : false
   }
 }
-
-const countTotals = arr =>
-  arr.reduce((acc, str) => acc + Number(str.split('-')[1]), 0)
-
-const getRandom = deck => Math.floor(Math.random() * deck.length)
-
-const getCard = deck => deck.splice(getRandom(deck), 1)
 
 const drawCard = state => {
   const deck = state.cards
