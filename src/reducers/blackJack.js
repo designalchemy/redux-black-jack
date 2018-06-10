@@ -109,7 +109,7 @@ const stick = state => {
   }
 }
 
-const toDo = (state = intialState(), action) => {
+const blackJack = (state = intialState(), action) => {
   switch (action.type) {
     case 'DRAW_NEW_HAND':
       return intialState()
@@ -122,4 +122,4 @@ const toDo = (state = intialState(), action) => {
   }
 }
 
-export default toDo
+export default blackJack

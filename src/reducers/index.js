@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import toDo from './toDo'
+import blackJack from './blackJack'
 
 export default combineReducers({
-  toDo: toDo
+  blackJack
 })

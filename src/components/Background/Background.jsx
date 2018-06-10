@@ -32,8 +32,8 @@ const styles = {
 }
 
 const Background = props => {
-  const { classes, toDos } = props
-  const { userTotal, done, dealerTotal, user, dealer } = toDos
+  const { classes, blackJack } = props
+  const { userTotal, done, dealerTotal, user, dealer } = blackJack
 
   return (
     <div>
@@ -68,19 +68,18 @@ const Background = props => {
 
 Background.propTypes = {
   classes: PropTypes.object,
-  toDos: PropTypes.object,
+  blackJack: PropTypes.object,
   drawNewHand: PropTypes.func,
   drawCard: PropTypes.func,
   stick: PropTypes.func
 }
 
 const mapStateToProps = state => ({
-  toDos: state.toDo
+  blackJack: state.blackJack
 })
 
-const matchDispatchToProps = dispatch => {
-  return bindActionCreators({ drawNewHand, drawCard, stick }, dispatch)
-}
+const matchDispatchToProps = dispatch =>
+  bindActionCreators({ drawNewHand, drawCard, stick }, dispatch)
 
 export default injectSheet(styles)(
   connect(mapStateToProps, matchDispatchToProps)(Background)
