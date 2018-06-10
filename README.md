@@ -1,6 +1,6 @@
-# React Mobx Parcel boilerplate
+# React Redux Black Jack
 
-Simpe and easy boilerplate for React and Mobx, with linting
+Simpe black jack with redux
 
 ### Installing
 
@@ -16,7 +16,7 @@ yarn start OR npm run start
 
 * [React](https://github.com/facebook/react) - JSX
 * [React Router](https://github.com/ReactTraining/react-router) - React Router
-* [Mobx](https://github.com/mobxjs/mobx) - Easy state mangament
+* [Redux](https://github.com/reduxjs/redux) - State mangament
 * [Parcel](https://github.com/parcel-bundler/parcel) - Easy webpack
 * [JSS](https://github.com/cssinjs/jss) - JSS instead of SCSS
 
