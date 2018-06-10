@@ -9,14 +9,17 @@ import Card from 'components/Card/Card'
 const styles = {
   container: {
     display: 'flex',
-    padding: 50,
+    flexDirection: 'column',
+    alignItems: 'center',
     '& > div': {
       flex: 1,
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: 20
     },
     '& h1': {
       marginBottom: 20,
-      fontSize: 20
+      fontSize: 20,
+      textAlign: 'center'
     },
     '& span': {
       border: '1px solid black',
@@ -39,10 +42,7 @@ const Background = props => {
     <div>
       <div className={classes.container}>
         <div>
-          <h1>
-            Your hand {userTotal}
-            {done && ` - ${done} - ${dealerTotal}`}
-          </h1>
+          <h1>Your hand - {userTotal}</h1>
           <div className={classes.cardContainer}>
             {user.map(item => <Card key={item} card={item} />)}
           </div>
@@ -56,10 +56,14 @@ const Background = props => {
       </div>
 
       <div className={classes.container}>
+        <h1>{done && `${done} - Dealers total - ${dealerTotal}`}</h1>
+      </div>
+
+      <div className={classes.container}>
         <div>
-          <span onClick={() => props.drawCard()}>Draw Card</span>
-          <span onClick={() => props.stick()}>Stick</span>
-          <span onClick={() => props.drawNewHand()}>Deal Cards</span>
+          {!done && <span onClick={() => props.drawCard()}>Draw Card</span>}
+          {!done && <span onClick={() => props.stick()}>Stick</span>}
+          {done && <span onClick={() => props.drawNewHand()}>Deal Cards</span>}
         </div>
       </div>
     </div>
