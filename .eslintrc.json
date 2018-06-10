@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["plugin:react/recommended", "eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest", "json", "markdown", "import"],
+  "rules": {
+    "indent": 0,
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "no-console": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "linebreak-style": 0
+  },
+  "globals": {
+    "shallow": true,
+    "render": true,
+    "mount": true,
+    "module": true
+  }
+}
