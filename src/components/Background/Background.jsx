@@ -47,14 +47,21 @@ const Background = props => {
         <div>
           <h1>Your hand - {userTotal}</h1>
           <div className={classes.cardContainer}>
-            {user.map(item => <Card key={item} card={item} />)}
+            {user.map(item => (
+              <Card key={`${item.value}${item.suit}`} card={item} />
+            ))}
           </div>
         </div>
         <div>
           <h1>Dealer</h1>
           <div className={classes.cardContainer}>
             {dealer.map((item, index) => (
-              <Card key={item} card={item} dealer index={index} />
+              <Card
+                key={`${item.value}${item.suit}`}
+                card={item}
+                dealer
+                index={index}
+              />
             ))}
           </div>
         </div>

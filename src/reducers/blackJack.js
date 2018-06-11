@@ -1,70 +1,40 @@
 import { DRAW_NEW_HAND, DRAW_CARD, STICK } from '../actions'
 
-const countTotals = arr =>
-  arr.reduce((acc, str) => acc + Number(str.split('-')[1]), 0)
+const countTotals = arr => arr.reduce((acc, item) => acc + item.value, 0)
 
 const getRandom = deck => Math.floor(Math.random() * deck.length)
 
 const getCard = deck => deck.splice(getRandom(deck), 1)
 
 const intialState = () => {
-  const allCards = [
-    'c-1',
-    'c-2',
-    'c-3',
-    'c-4',
-    'c-5',
-    'c-6',
-    'c-7',
-    'c-8',
-    'c-9',
-    'c-10',
-    'c-11',
-    'c-12',
-    's-1',
-    's-2',
-    's-3',
-    's-4',
-    's-5',
-    's-6',
-    's-7',
-    's-8',
-    's-9',
-    's-10',
-    's-11',
-    's-12',
-    'h-1',
-    'h-2',
-    'h-3',
-    'h-4',
-    'h-5',
-    'h-6',
-    'h-7',
-    'h-8',
-    'h-9',
-    'h-10',
-    'h-11',
-    'h-12',
-    'd-1',
-    'd-2',
-    'd-3',
-    'd-4',
-    'd-5',
-    'd-6',
-    'd-7',
-    'd-8',
-    'd-9',
-    'd-10',
-    'd-11',
-    'd-12'
-  ]
+  const cards = [].concat.apply(
+    // cheeky flatmap
+    [],
+    ['h', 'd', 'c', 's'].map(suit =>
+      [...Array(12).keys()].map(item => {
+        const value = item >= 9 ? 10 : item + 1
+        const key =
+          item === 0
+            ? 'ace'
+            : item === 9
+              ? 'jack'
+              : item === 10 ? 'queen' : item === 11 ? 'king' : ''
 
-  const user = [...getCard(allCards), ...getCard(allCards)]
-  const dealer = [...getCard(allCards), ...getCard(allCards)]
+        return {
+          value,
+          suit,
+          key
+        }
+      })
+    )
+  )
+
+  const user = [...getCard(cards), ...getCard(cards)]
+  const dealer = [...getCard(cards), ...getCard(cards)]
   const userTotal = countTotals(user)
 
   return {
-    cards: allCards,
+    cards: cards,
     user,
     userTotal,
     dealer,

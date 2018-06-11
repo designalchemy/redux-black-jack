@@ -58,9 +58,9 @@ const symbol = letter => {
 
 const Card = props => {
   const { classes, card } = props
-  const splitCard = card.split('-')
-  const char = symbol(splitCard[0])
-  const colorLogic = splitCard[0] === 's' || splitCard[0] === 'c'
+  const { value, suit, key } = card
+  const char = symbol(suit)
+  const colorLogic = suit === 's' || suit === 'c'
   return (
     <div
       className={cx(classes.container, {
@@ -76,12 +76,12 @@ const Card = props => {
       </div>
 
       <div className={classes.topLeft}>
-        <div>{splitCard[1]}</div>
+        <div>{value}</div>
         <div>&nbsp;{char}</div>
       </div>
 
       <div className={classes.bottomRight}>
-        <div>{splitCard[1]}</div>
+        <div>{value}</div>
         <div>&nbsp;{char}</div>
       </div>
     </div>
@@ -90,7 +90,7 @@ const Card = props => {
 
 Card.propTypes = {
   classes: PropTypes.object,
-  card: PropTypes.string
+  card: PropTypes.object
 }
 
 export default injectSheet(styles)(Card)
