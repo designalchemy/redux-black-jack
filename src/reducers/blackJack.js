@@ -1,3 +1,5 @@
+import { DRAW_NEW_HAND, DRAW_CARD, STICK } from '../actions'
+
 const countTotals = arr =>
   arr.reduce((acc, str) => acc + Number(str.split('-')[1]), 0)
 
@@ -77,11 +79,10 @@ const drawCard = state => {
   const userTotal = countTotals(user)
 
   return {
+    ...state,
     cards: deck,
     user,
     userTotal,
-    dealer: state.dealer,
-    dealerTotal: state.dealerTotal,
     done: userTotal > 21 ? 'Bust - Dealer Wins' : false
   }
 }
@@ -97,9 +98,8 @@ const stick = state => {
   }
 
   return {
+    ...state,
     cards: deck,
-    user: state.user,
-    userTotal: state.userTotal,
     dealer: dealer,
     dealerTotal: dealerTotal,
     done:
@@ -111,11 +111,11 @@ const stick = state => {
 
 const blackJack = (state = intialState(), action) => {
   switch (action.type) {
-    case 'DRAW_NEW_HAND':
+    case DRAW_NEW_HAND:
       return intialState()
-    case 'DRAW_CARD':
+    case DRAW_CARD:
       return drawCard(state)
-    case 'STICK':
+    case STICK:
       return stick(state)
     default:
       return state
