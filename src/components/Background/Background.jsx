@@ -3,7 +3,7 @@ import injectSheet from 'react-jss'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { drawCard, drawNewHand, stick } from '../../actions'
+import { drawCard, drawNewHand, stick, stake } from '../../actions'
 import Card from 'components/Card/Card'
 
 const styles = {
@@ -34,12 +34,17 @@ const styles = {
   },
   cardContainer: {
     display: 'flex'
+  },
+  stakeSelected: {
+    color: 'black !important',
+    background: 'white'
   }
 }
 
 const Background = props => {
   const { classes, blackJack } = props
-  const { userTotal, done, dealerTotal, user, dealer } = blackJack
+  const { userTotal, done, dealerTotal, user, dealer, bank, stake } = blackJack
+  const isSelected = int => stake === int
 
   return (
     <div>
@@ -48,7 +53,7 @@ const Background = props => {
           <h1>Your hand - {userTotal}</h1>
           <div className={classes.cardContainer}>
             {user.map(item => (
-              <Card key={`${item.value}${item.suit}`} card={item} />
+              <Card key={`${item.value}${item.suit}${item.key}`} card={item} />
             ))}
           </div>
         </div>
@@ -57,7 +62,7 @@ const Background = props => {
           <div className={classes.cardContainer}>
             {dealer.map((item, index) => (
               <Card
-                key={`${item.value}${item.suit}`}
+                key={`${item.value}${item.suit}${item.key}`}
                 card={item}
                 dealer
                 index={index}
@@ -78,6 +83,47 @@ const Background = props => {
           {done && <span onClick={() => props.drawNewHand()}>Deal Cards</span>}
         </div>
       </div>
+
+      <div className={classes.container}>
+        <div>
+          <span
+            className={`${isSelected(10) ? classes.stakeSelected : ''}`}
+            onClick={() => props.stake(10)}
+          >
+            10
+          </span>
+          <span
+            className={`${isSelected(50) ? classes.stakeSelected : ''}`}
+            onClick={() => props.stake(50)}
+          >
+            50
+          </span>
+          <span
+            className={`${isSelected(100) ? classes.stakeSelected : ''}`}
+            onClick={() => props.stake(100)}
+          >
+            100
+          </span>
+          <span
+            className={`${isSelected(200) ? classes.stakeSelected : ''}`}
+            onClick={() => props.stake(200)}
+          >
+            200
+          </span>
+          <span
+            className={`${isSelected(500) ? classes.stakeSelected : ''}`}
+            onClick={() => props.stake(500)}
+          >
+            500
+          </span>
+        </div>
+      </div>
+
+      <div className={classes.container}>
+        <div>
+          <span>Bank: {bank}</span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -95,7 +141,7 @@ const mapStateToProps = state => ({
 })
 
 const matchDispatchToProps = dispatch =>
-  bindActionCreators({ drawNewHand, drawCard, stick }, dispatch)
+  bindActionCreators({ drawNewHand, drawCard, stick, stake }, dispatch)
 
 export default injectSheet(styles)(
   connect(mapStateToProps, matchDispatchToProps)(Background)

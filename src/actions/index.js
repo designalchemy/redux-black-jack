@@ -1,8 +1,9 @@
 const DRAW_NEW_HAND = 'DRAW_NEW_HAND'
 const DRAW_CARD = 'DRAW_CARD'
 const STICK = 'STICK'
+const STAKE = 'STAKE'
 
-export { DRAW_NEW_HAND, DRAW_CARD, STICK }
+export { DRAW_NEW_HAND, DRAW_CARD, STICK, STAKE }
 
 const drawNewHand = () => ({
   type: DRAW_NEW_HAND
@@ -16,4 +17,9 @@ const stick = () => ({
   type: STICK
 })
 
-export { drawNewHand, drawCard, stick }
+const stake = stake => ({
+  type: STAKE,
+  stake
+})
+
+export { drawNewHand, drawCard, stick, stake }
